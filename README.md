@@ -1,20 +1,29 @@
-# HealthCare
+# Health Care Web App
 
-HealthCare is a platform that bridges patients with healthcare providers, offering an efficient way to search for doctors based on specialties, symptoms, and locations.
+A responsive and modern Health Care web application built with React and Vite. This project aims to provide users with accessible health-related services or information through a sleek front-end interface.
 
-## Technologies Used
+## 🚀 Features
 
-- **Frontend**:
-  - React.js
+- ⚛️ Built with React and Vite for fast performance
+- 📱 Fully responsive design
+- 🧭 Client-side routing (likely via React Router)
+- 📁 Organized project structure
+- 🌐 Deployed on Vercel
 
-## Frontend
+## 🛠️ Tech Stack
 
-The frontend of HealthCare is built using React.js and styled.
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [HTML/CSS]
+- [Vercel](https://vercel.com/) for deployment
 
-## Features
+## 📦 Installation
 
-- Search for doctors based on specialties or symptoms.
-- Filter search results by location.
-- User-friendly interface for seamless navigation.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Selva2213/Health_Care.git
+   cd Health_Care
 
-Live demo - https://health-care-one-lime.vercel.app/
+
+Live demo - https://health-care-3et1.vercel.app/
