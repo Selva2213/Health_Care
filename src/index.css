@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+:root {
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Width */
+::-webkit-scrollbar {
+  width: 0.7rem; /* Adjust width as needed */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #bababa; /* Color of the scrollbar handle */
+  border-radius: 4px; /* Round the corners of the handle */
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #aeaeae; /* Color of the scrollbar handle on hover */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: inherit; /* Color of the scrollbar track */
+}
+
+/* Track when handle is dragged */
+::-webkit-scrollbar-track:active {
+  background: #e0e0e0; /* Color of the scrollbar track when handle is dragged */
+}
+
+.bg-gradient {
+  @apply bg-gradient-to-r from-indigo-900 via-blue-600 to-cyan-400
+}
+
+.h-scr {
+  @apply h-[calc(100vh-60px)]
+}
