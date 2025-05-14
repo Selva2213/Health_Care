@@ -6,7 +6,6 @@ import useAuth from "../hooks/use-auth";
 import Loader from "./Loader";
 import Logo from "../assets/logo_2.png";
 import UserLogo from "../assets/user.png";
-// import "../styles.css";
 const Navbar = () => {
   const { pathname } = useLocation();
   const { isAuthenticated, loading, data: user } = useAuth();
@@ -79,27 +78,14 @@ const Navbar = () => {
             ))}
           </ul>
           <div className="flex items-center">
-            {loading ? (
-              <Loader clip={true} />
-            ) : !isAuthenticated ? (
+            
               <Link
                 to="/login"
                 className="py-2 px-4 rounded-full bg-white text-blue-700 text-sm hover:bg-blue-800 hover:text-white transition-all"
               >
                 Signup/Login
               </Link>
-            ) : (
-              <Link to="/dashboard/profile">
-                <img
-                  src={image || UserLogo}
-                  alt={user?.fullname}
-                  width={35}
-                  height={35}
-                  className="rounded-full object-cover border border-white"
-                  onError={() => setImage(UserLogo)}
-                />
-              </Link>
-            )}
+            
           </div>
         </div>
       </div>
