@@ -6,7 +6,7 @@ import useAuth from "../hooks/use-auth";
 import Loader from "./Loader";
 import Logo from "../assets/logo_2.png";
 import UserLogo from "../assets/user.png";
-
+// import "../styles.css";
 const Navbar = () => {
   const { pathname } = useLocation();
   const { isAuthenticated, loading, data: user } = useAuth();
@@ -15,7 +15,6 @@ const Navbar = () => {
   const toggle = () => setOpen(!open);
 
   const Icon = open ? BsX : FcMenu;
-
   const [image, setImage] = useState("");
 
   useEffect(() => {
@@ -23,100 +22,85 @@ const Navbar = () => {
   }, [user]);
 
   useEffect(() => {
-    //automatically close the opened navbar at medium devices
     const handleResize = () => {
-      window.innerWidth > 750 && setOpen(false);
+      if (window.innerWidth > 750) setOpen(false);
     };
     window.addEventListener("resize", handleResize);
-    // Cleanup the event listener
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
-    setOpen(false)
-  } , [pathname])
+    setOpen(false);
+  }, [pathname]);
 
   const routes = [
-    {
-      label: "Home",
-      href: "/",
-      isActive: pathname === "/",
-    },
-    {
-      label: "About",
-      href: "/about",
-      isActive: pathname === "/about",
-    },
-    {
-      label: "Find a doctor",
-      href: "/search",
-      isActive: pathname === "/search",
-    },
+    { label: "Home", href: "/", isActive: pathname === "/" },
+    { label: "About", href: "/about", isActive: pathname === "/about" },
+    // { label: "Symptoms", href: "/symptoms", isActive: pathname === "/symptoms" },
   ];
 
   return (
     <nav className="relative">
       <div
-        className={`fixed inset-0 z-50 w-screen p-5 text-white text-right flex justify-between bg-gradient ${
-          open ? "h-full items-start" : "h-[60px] items-center"
-        } transition-all duration-500 ease-in-out md:transition-none`}
+        className={`fixed inset-x-0 top-0 z-50 w-full px-5 py-3 transition-all duration-500 ease-in-out bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-md ${
+          open ? "h-full" : "h-[65px]"
+        }`}
       >
-        <div className="w-full flex flex-col md:flex-row justify-center md:justify-between items-start">
-          <div className="flex items-center gap-2">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-3">
             <Icon
-              size={"1.3rem"}
-              role="button"
+              size={"1.5rem"}
               onClick={toggle}
-              className="block md:hidden p-1 rounded-full text-black bg-white"
+              className="md:hidden cursor-pointer bg-white text-black p-1 rounded-full"
             />
-            <Link to="/" className="flex items-center gap-1">
-              <img
-                src={Logo}
-                alt="healthcare logo"
-                width={50}
-                className="object-cover"
-              />
-              <h1 className="text-xl font-bold">HealthCare</h1>
+            <Link to="/" className="flex items-center gap-2">
+              <img src={Logo} alt="HealthCare" className="w-10 h-10" />
+              <span className="text-xl font-bold">HealthCare</span>
             </Link>
           </div>
           <ul
-            className={`md:flex items-start md:items-center gap-4 mt-2 ${
-              !open ? "hidden" : "flex flex-col ms-7 mt-2"
-            }`}
+            className={`md:flex gap-6 font-medium text-md items-center ${
+              open ? "flex flex-col mt-10 md:mt-0" : "hidden"
+            } md:flex-row`}
           >
-            {routes.map((route, i) => (
-              <Link
-                key={i}
-                to={route.href}
-                className={`${route.isActive && "border-b border-b-white"}`}
-              >
-                {route.label}
-              </Link>
+            {routes.map((route, index) => (
+              <li key={index}>
+                <Link
+                  to={route.href}
+                  className={`hover:text-gray-100 transition-all duration-300 ${
+                    route.isActive
+                      ? "border-b-2 border-white pb-1"
+                      : "border-b-2 border-transparent"
+                  }`}
+                >
+                  {route.label}
+                </Link>
+              </li>
             ))}
           </ul>
-        </div>
-        <div className="pr-2 ps-3">
-          {loading ? (
-            <Loader clip={true} />
-          ) : !isAuthenticated ? (
-            <Link
-              to="/login"
-              className="py-2 px-3 rounded-lg bg-gray-200 text-blue-700 text-sm hover:text-white hover:bg-blue-800 transition-all ease-in-out duration-500"
-            >
-              Signup/Login
-            </Link>
-          ) : (
-            <Link to={"/dashboard/profile"}>
-              <img
-                src={image || UserLogo}
-                alt={user?.fullname}
-                width={30}
-                height={30}
-                className="rounded-full object-cover"
-                onError={() => setImage(UserLogo)}
-              />
-            </Link>
-          )}
+          <div className="flex items-center">
+            {loading ? (
+              <Loader clip={true} />
+            ) : !isAuthenticated ? (
+              <Link
+                to="/login"
+                className="py-2 px-4 rounded-full bg-white text-blue-700 text-sm hover:bg-blue-800 hover:text-white transition-all"
+              >
+                Signup/Login
+              </Link>
+            ) : (
+              <Link to="/dashboard/profile">
+                <img
+                  src={image || UserLogo}
+                  alt={user?.fullname}
+                  width={35}
+                  height={35}
+                  className="rounded-full object-cover border border-white"
+                  onError={() => setImage(UserLogo)}
+                />
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </nav>

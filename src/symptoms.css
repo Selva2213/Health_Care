@@ -1,0 +1,147 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"); */
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.dashboard-container {
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.symptom-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.box {
+  position: relative;
+  width: 16rem;
+  height: 10rem;
+  cursor: pointer;
+}
+
+.box:hover .imgBox {
+  transform: translate(-3.5rem, -3.5rem);
+}
+
+.box:hover .content {
+  transform: translate(3.5rem, 3.5rem);
+}
+
+.imgBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  transition: all 0.5s ease-in-out;
+}
+
+.imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-color: #fff;
+  z-index: 1;
+  text-align: center;
+  transition: 0.5s ease-in-out;
+  border: 2px solid transparent;
+}
+
+.content.selected {
+  border-color: #007bff;
+}
+
+.content h2 {
+  font-size: 1rem;
+  color: #111;
+  font-weight: 500;
+  line-height: 2rem;
+  letter-spacing: 1px;
+}
+
+.content span {
+  display: block;
+  margin-top: 0.5rem;
+  color: #555;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.diseases-list {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.disease-card {
+  padding: 1rem 2rem;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-size: 1.4rem;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+  .box:hover .imgBox {
+    transform: translate(0, -3.5rem);
+  }
+
+  .box:hover .content {
+    transform: translate(0, 3.5rem);
+  }
+}
+.disease-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 12px;
+  margin: 1rem 0;
+  background-color: #f9f9f9;
+  max-width: 400px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.disease-card img.disease-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.disease-card h4 {
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.disease-card p {
+  font-size: 1rem;
+  color: #555;
+}

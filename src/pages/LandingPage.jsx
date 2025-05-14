@@ -1,13 +1,19 @@
 import React, { useEffect } from "react";
 import heroLogo from "../assets/logo_2.png";
 import Footer from "../components/Footer";
-
+import { useNavigate } from "react-router-dom";
+import AboutPage from "./about";
 export default function LandingPage() {
   useEffect(() => {
     document.querySelector("main").classList = "px-0 pt-[60px]";
   }, []);
-
+  const navigate=useNavigate();
+ const handleClick =()=>{
+navigate("/login");
+ }
   return (
+    <>
+    <section id="home">
     <div className="min-h-screen">
       <div className="absolute top-4 left-4 w-1/3 z-[1] h-fit">
         <img draggable={false} src="./honeycomb.svg" alt="style" />
@@ -27,7 +33,7 @@ export default function LandingPage() {
               We are committed to providing you with the best medical and
               healthcare services to help you live healthier and happier
             </p>
-            <button className="bg-blue-700 hover:bg-blue-800 px-8 py-2 rounded-lg text-white">
+            <button className="bg-blue-700 hover:bg-blue-800 px-8 py-2 rounded-lg text-white" onClick={handleClick}>
               Get Started {">"}
             </button>
           </div>
@@ -47,16 +53,12 @@ export default function LandingPage() {
           alt="home_hero"
         />
       </div>
-
-      <div className="flex justify-center mt-14 mb-6">
-        <img
-          draggable={false}
-          className="w-[75vw]"
-          src="./about.svg"
-          alt="about"
-        />
-      </div>
-      {/* <Footer /> */}
+      
     </div>
+    </section>
+    <section id="about">
+      <AboutPage/>
+    </section>
+    </>
   );
 }

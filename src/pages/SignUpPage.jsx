@@ -67,26 +67,6 @@ const SignUpPage = () => {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-col gap-1 items-center mb-3">
-            <div className="flex gap-4 text-[0.8rem]">
-              <CheckBox
-                value={"As Patient"}
-                nameAtt={"PATIENT"}
-                idAtt={"PATIENT"}
-                handler={handleChecked}
-                setter={setCheckedOption}
-                checkedOption={checkedOption}
-              />
-              <CheckBox
-                value={"As Doctor"}
-                nameAtt={"DOCTOR"}
-                idAtt={"DOCTOR"}
-                handler={handleChecked}
-                setter={setCheckedOption}
-                checkedOption={checkedOption}
-              />
-            </div>
-          </div>
           <div className="flex flex-col justify-center items-center gap-2 mb-4">
             <InputBar
               labelName={"Full Name"}

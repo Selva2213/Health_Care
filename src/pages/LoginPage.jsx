@@ -1,17 +1,17 @@
 import InputBar from "../components/InputBar.jsx";
 import { useState } from "react";
 import PasswordField from "../components/PasswordField.jsx";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { validateObject } from "../util/validateObject.js";
 import { toast } from "sonner";
 import useAuth from "../hooks/use-auth.js";
 import { FcGoogle } from "react-icons/fc";
 import { BASE_URL } from "../lib/axios.js";
 import Loader from "../components/Loader.jsx";
-
+import { useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const { loginUser, loading } = useAuth();
-  let [formData, setFormData] = useState({ emailAddress: "", password: "" });
+  let [formData, setFormData] = useState({username:"", emailAddress: "", password: "" });
 
   const handleInputChange = (event) => {
     setFormData((currFormData) => ({
@@ -19,19 +19,28 @@ const LoginPage = () => {
       [event.target.name]: event.target.value,
     }));
   };
+  const navigate = useNavigate();
+  const validuserName="Selva";
+const validMail="selvakumar2213@gmail.com";
+const validPass="123456";
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const { error } = validateObject(formData);
-    if (error) {
-      toast.error(error);
-      return;
-    }
-    await loginUser({
-      email: formData.emailAddress,
-      password: formData.password,
-    });
-  };
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  const { error } = validateObject(formData);
+  if (error) {
+    toast.error(error);
+    return;
+  }
+
+  // TEMPORARY TEST
+  if (formData.username === validuserName && formData.emailAddress === validMail && formData.password === validPass) {
+    navigate("/symptoms");
+  } else {
+    navigate("/error");
+  }
+};
+
+
 
   return (
     <div className="grid place-items-center h-screen bg-gradient-to-r from-indigo-900 via-blue-600 to-cyan-400">
@@ -53,6 +62,15 @@ const LoginPage = () => {
           onSubmit={handleSubmit}
           className="space-y-3 grid place-items-center"
         >
+          <InputBar
+            labelName={"User Name"}
+            forVal={"user-name"}
+            typeVal={"text"}
+            idVal={"user-name"}
+            nameVal={"username"}
+            value={formData.username}
+            handleChange={handleInputChange}
+          />
           <InputBar
             labelName={"Email address"}
             forVal={"email-address"}
@@ -84,15 +102,6 @@ const LoginPage = () => {
         </form>
 
         <div className="grid place-items-center space-y-3 mt-3">
-          <p className="text-sm">(OR)</p>
-          <Link
-            to={BASE_URL + "/auth/google/callback"}
-            className="flex items-center justify-center gap-2 bg-gray-300 text-blue-700 py-2 px-4 rounded-md w-full"
-          >
-            <FcGoogle size={"1.3rem"} />
-            <span>Login with Google</span>
-          </Link>
-
           <p className="text-[0.8rem] text-center">
             Don't have an account?{" "}
             <Link to="/signup" className="underline font-bold">

@@ -1,0 +1,186 @@
+:root {
+    --primary-color: #4f46e5;
+    --secondary-color: #e0e7ff;
+    --background-color: #f9fafb;
+    --text-color: #ffffff;
+    --card-color: rgba(255, 255, 255, 0.9); /* Slight transparency */
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --font-family: 'Inter', sans-serif;
+  }
+  
+  /* Global Styles */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    background: url('/bg1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content:center; /* Align everything to the right */
+    align-items: center; /* Position the form at the bottom */
+    /* padding: 20px 20px; */
+    padding-top: 20px;
+  }
+  
+  /* Navbar Styles - Position it at top right */
+  .navbar {
+    background-color: rgba(79, 70, 229, 0.8); /* Semi-transparent */
+    color: white;
+    padding: 1rem 2rem;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 1rem;
+    font-weight: 500;
+  }
+  
+  .navbar a:hover {
+    text-decoration: underline;
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .navbar-links li {
+    display: inline;
+  }
+  
+  .navbar-brand a {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  /* Form container at bottom-right */
+  .login-container,
+  .signup-container {
+    max-width: 400px;
+    margin: 0;
+    padding: 2rem;
+    background-color: var(--card-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    position: absolute;
+    bottom: 30px; 
+    right: 20px; /* Align to right */
+    width: 100%;
+  }
+  
+  input {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem 0 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+  }
+  
+  
+  /* Responsive for small screens */
+  @media (max-width: 600px) {
+    .navbar {
+      width: 100%;
+      flex-direction: column;
+      padding: 1rem;
+      top: 0;
+      right: 0;
+    }
+  
+    .login-container,
+    .signup-container,
+    .dashboard-container {
+      width: 90%;
+      /* bottom: 20px; */
+    }
+  }
+ button {
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 7px;
+    border: 1px solid rgb(61, 106, 255);
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    background: transparent;
+    color: #0b0202;
+    overflow: hidden;
+    box-shadow: 0 0 0 0 transparent;
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+}
+
+button:hover {
+    background: rgb(61, 106, 255);
+    box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+button:hover::before {
+    -moz-animation: sh02 0.5s 0s linear;
+    animation: sh02 0.5s 0s linear;
+}
+/* button.selected {
+    background: rgb(61, 106, 255);
+    color: white;
+    border-color: rgb(61, 106, 255);
+    box-shadow: 0 0 10px rgba(0, 142, 236, 0.8);
+  } */
+  .button:active {
+    background-color: #039852; /* Darker Green */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+  .dashboard-container {
+    position: absolute;
+    bottom: 0; /* Aligns to bottom */
+    /* right: 0; */
+    left: 35%;
+    width: 400px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* translucent white */
+    border-radius: 10px 0 0 0;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dashboard-container h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .dashboard-container button {
+    /* display: block; */
+    margin: 8px 0;
+    /* width: 100%; */
+  }
+  .centered-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* Vertical center */
+    align-items: center;      /* Horizontal center */
+    height: 100vh;            /* Full viewport height */
+    text-align: center;
+    padding: 20px;
+    /* background-color: rgba(255, 255, 255, 0.8); Optional readability */
+  }
+  

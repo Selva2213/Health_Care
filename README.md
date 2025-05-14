@@ -17,4 +17,4 @@ The frontend of HealthCare is built using React.js and styled.
 - Filter search results by location.
 - User-friendly interface for seamless navigation.
 
-Live demo - https://health-care-one-lime.vercel.app/
+Live demo - 
