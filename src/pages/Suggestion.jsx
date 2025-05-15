@@ -1,8 +1,8 @@
-import { useLocation,useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../suggestion.css";
 function SuggestedSpecialists() {
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
   const specialists = location.state?.specialists || [];
   console.log("Received specialists:", specialists);
@@ -12,38 +12,51 @@ function SuggestedSpecialists() {
       <button onClick={() => navigate(-1)}>Go Back</button>
       {specialists.length > 0 ? (
         <div >
-          <div className="canvas-wrapper">
+          <div className="container">
             {specialists.map((s, i) => (
-              <a className="canvas" key={i} href={s.appointmentLink} target="_blank" rel="noopener noreferrer">
-                <div className="canvas_border">
-                  <svg viewBox="0 0 400 400" preserveAspectRatio="none">
-                    <rect className="rect-gradient" height="100%" width="100%" stroke="#000" strokeWidth="2" fill="none" />
-                  </svg>
+              <div className="card" key={i}>
+                {/* Face 1: Info Side */}
+                <div className="face face1">
+                  <div className="xyz">
+                    <h2 className="java">{s.name}</h2>
+                    <p><strong>Specialization:</strong> {s.specialization}</p>
+                    <p><strong>Address:</strong> {s.address}</p>
+                    <p><strong>Fee:</strong> {s.consultingFee}</p>
+                    <a
+                      href={s.appointmentLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: "inline-block",
+                        marginTop: "10px",
+                        padding: "8px 16px",
+                        background: "#fff",
+                        borderRadius: "8px",
+                        textDecoration: "none",
+                        color: "#000",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Book Now
+                    </a>
+                  </div>
                 </div>
 
-                <div className="canvas_img-wrapper">
-                  <img className="canvas_img" src={s.image} alt={s.name} />
+                {/* Face 2: Decorative Side */}
+                <div className="face face2">
+                  <h2>{s.specialization}</h2>
                 </div>
-
-                <div className="canvas_copy canvas_copy--left">
-                  <span className="canvas_copy_title">{s.name}</span>
-                  <span className="canvas_copy_subtitle">{s.specialization}</span>
-                  <span className="canvas_copy_details">
-                    <strong>Address:</strong> {s.address}
-                    <br />
-                    <strong>Fee:</strong> {s.consultingFee}
-                  </span>
-                </div>
-              </a>
+              </div>
             ))}
           </div>
+
 
         </div>
 
       ) : (
         <p>No specialists selected.</p>
       )}
-      
+
     </div>
   );
 }
