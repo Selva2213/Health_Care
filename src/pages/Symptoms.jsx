@@ -246,6 +246,136 @@ const diseaseDetails = {
     specialist: "ENT Specialist"
   }
 };
+const specialistData = {
+  "General Physician": {
+    name: "Dr. Ayesha Khan",
+    specialization: "General Physician",
+    image: "/home_hero_bottom.png",
+    address: "CareWell Clinic, Mumbai",
+    consultingFee: "₹500",
+    appointmentLink: "https://example.com/book/general-physician"
+  },
+  "Infectious Disease Specialist": {
+    name: "Dr. Sanjay Rao",
+    specialization: "Infectious Disease Specialist",
+    image: "/images/infectious_disease.jpg",
+    address: "Medicity Hospital, Hyderabad",
+    consultingFee: "₹700",
+    appointmentLink: "https://example.com/book/infectious-disease"
+  },
+  "Pulmonologist": {
+    name: "Dr. Rakesh Sharma",
+    specialization: "Pulmonologist",
+    image: "/images/pulmonologist.jpg",
+    address: "Apollo Hospitals, Chennai",
+    consultingFee: "₹600",
+    appointmentLink: "https://example.com/book/pulmonologist"
+  },
+  "Cardiologist": {
+    name: "Dr. Neha Patel",
+    specialization: "Cardiologist",
+    image: "/images/cardiologist.jpg",
+    address: "HeartCare Center, Bangalore",
+    consultingFee: "₹800",
+    appointmentLink: "https://example.com/book/cardiologist"
+  },
+  "Psychiatrist": {
+    name: "Dr. Anjali Mehra",
+    specialization: "Psychiatrist",
+    image: "/images/psychiatrist.jpg",
+    address: "MindWell Clinic, Delhi",
+    consultingFee: "₹650",
+    appointmentLink: "https://example.com/book/psychiatrist"
+  },
+  "Gastroenterologist": {
+    name: "Dr. Rajiv Nair",
+    specialization: "Gastroenterologist",
+    image: "/images/gastroenterologist.jpg",
+    address: "Digestive Health Institute, Mumbai",
+    consultingFee: "₹750",
+    appointmentLink: "https://example.com/book/gastroenterologist"
+  },
+  "Allergist": {
+    name: "Dr. Priya Joshi",
+    specialization: "Allergist",
+    image: "/images/allergist.jpg",
+    address: "Allergy Relief Center, Pune",
+    consultingFee: "₹500",
+    appointmentLink: "https://example.com/book/allergist"
+  },
+  "ENT Specialist": {
+    name: "Dr. Karthik Iyer",
+    specialization: "ENT Specialist",
+    image: "/images/ent.jpg",
+    address: "Ear Nose Throat Clinic, Coimbatore",
+    consultingFee: "₹550",
+    appointmentLink: "https://example.com/book/ent"
+  },
+  "Neurologist": {
+    name: "Dr. Meenakshi Rao",
+    specialization: "Neurologist",
+    image: "/images/neurologist.jpg",
+    address: "NeuroCare Hospital, Bangalore",
+    consultingFee: "₹900",
+    appointmentLink: "https://example.com/book/neurologist"
+  },
+  "Hematologist": {
+    name: "Dr. Vivek Kulkarni",
+    specialization: "Hematologist",
+    image: "/images/hematologist.jpg",
+    address: "Blood and Cancer Institute, Delhi",
+    consultingFee: "₹850",
+    appointmentLink: "https://example.com/book/hematologist"
+  },
+  "Endocrinologist": {
+    name: "Dr. Swetha Reddy",
+    specialization: "Endocrinologist",
+    image: "/images/endocrinologist.jpg",
+    address: "Hormone Health Center, Hyderabad",
+    consultingFee: "₹700",
+    appointmentLink: "https://example.com/book/endocrinologist"
+  },
+  "Gynecologist": {
+    name: "Dr. Reema Singh",
+    specialization: "Gynecologist",
+    image: "/images/gynecologist.jpg",
+    address: "MotherCare Hospital, Kolkata",
+    consultingFee: "₹600",
+    appointmentLink: "https://example.com/book/gynecologist"
+  },
+  "Dermatologist": {
+    name: "Dr. Aditya Sinha",
+    specialization: "Dermatologist",
+    image: "/images/dermatologist.jpg",
+    address: "Skin Health Clinic, Jaipur",
+    consultingFee: "₹550",
+    appointmentLink: "https://example.com/book/dermatologist"
+  },
+  "Rheumatologist": {
+    name: "Dr. Pooja Verma",
+    specialization: "Rheumatologist",
+    image: "/images/rheumatologist.jpg",
+    address: "Joint Wellness Center, Ahmedabad",
+    consultingFee: "₹700",
+    appointmentLink: "https://example.com/book/rheumatologist"
+  },
+  "General Surgeon": {
+    name: "Dr. Mohan Bhargava",
+    specialization: "General Surgeon",
+    image: "/images/general_surgeon.jpg",
+    address: "Surgical Center, Delhi",
+    consultingFee: "₹900",
+    appointmentLink: "https://example.com/book/surgeon"
+  },
+  "Dietitian": {
+    name: "Dr. Lakshmi Narayan",
+    specialization: "Dietitian",
+    image: "/images/dietitian.jpg",
+    address: "Nutrition Hub, Bengaluru",
+    consultingFee: "₹400",
+    appointmentLink: "https://example.com/book/dietitian"
+  }
+};
 function Dashboard() {
   const [selectedSymptoms, setSelectedSymptoms] = useState([]);
   const [selectedSpecialists, setSelectedSpecialists] = useState([]);
@@ -269,18 +399,21 @@ function Dashboard() {
       .map(([d]) => d);
   };
 useEffect(() => {
-  const diseaseList = matchedDiseases();
-  const specialistSet = new Set();
+  const diseaseList = matchedDiseases(selectedSymptoms);
+  const specialistsMap = new Map();
 
   diseaseList.forEach((disease) => {
-    const details = diseaseDetails[disease];
-    if (details?.specialist) {
-      specialistSet.add(details.specialist);
+    const specName = diseaseDetails[disease]?.specialist;
+    const specObj = specialistData[specName];
+    console.log(specObj);
+    if (specObj && !specialistsMap.has(specName)) {
+      specialistsMap.set(specName, specObj); 
     }
   });
 
-  setSelectedSpecialists([...specialistSet]);
+  setSelectedSpecialists([...specialistsMap.values()]);
 }, [selectedSymptoms]);
+
 const navigate=useNavigate();
   return (
     <div className="dashboard-container">
