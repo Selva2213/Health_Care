@@ -23,7 +23,8 @@ const LoginPage = () => {
   const validuserName="Selva";
 const validMail="selvakumar2213@gmail.com";
 const validPass="123456";
-
+const admin="admin123@gmail.com";
+const adminpass="admin123";
 const handleSubmit = async (event) => {
   event.preventDefault();
   const { error } = validateObject(formData);
@@ -31,11 +32,12 @@ const handleSubmit = async (event) => {
     toast.error(error);
     return;
   }
-
-  // TEMPORARY TEST
   if (formData.username === validuserName && formData.emailAddress === validMail && formData.password === validPass) {
     navigate("/symptoms");
-  } else {
+  } else if(formData.username === validuserName && formData.emailAddress === admin && formData.password === adminpass){
+    navigate("/admin");
+  }  
+  else {
     navigate("/error");
   }
 };

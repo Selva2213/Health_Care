@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound.jsx";
 import Layout from "./components/Layout.jsx";
 import Errorpage from "./pages/Errorpage.jsx";
 import Suggestion from "./pages/Suggestion.jsx";
+import ManageData from "./pages/ManageData.jsx";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
           <Route path="/symptoms" element={<SearchPage />} />
           <Route path="/error" element={<Errorpage/>}/>
           <Route path="*" element={<NotFound />} />
-          <Route path="/suggestion" element={<Suggestion/>}/>       
+          <Route path="/suggestion" element={<Suggestion/>}/> 
+          <Route path="/admin" element={<ManageData/>} />      
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />

@@ -2,7 +2,7 @@ import { useState } from "react";
 import InputBar from "../components/InputBar.jsx";
 import PasswordField from "../components/PasswordField.jsx";
 import CheckBox from "../components/CheckBox.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { validateObject } from "../util/validateObject.js";
 import { toast } from "sonner";
 import useAuth from "../hooks/use-auth.js";
@@ -26,12 +26,14 @@ const SignUpPage = () => {
       [event.target.name]: event.target.value,
     }));
   };
-
+  const navigate=useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
+    navigate("/symptoms");
     const { error } = validateObject(formData);
     if (error) {
       toast.error(error);
+      
       return;
     }
     const registerData = { ...formData, role: checkedOption };

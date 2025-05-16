@@ -53,8 +53,8 @@ const Navbar = () => {
               className="md:hidden cursor-pointer bg-white text-black p-1 rounded-full"
             />
             <Link to="/" className="flex items-center gap-2">
-              <img src={Logo} alt="HealthCare" className="w-10 h-10" />
-              <span className="text-xl font-bold">HealthCare</span>
+              <img src={Logo} alt="SymptoCheck" className="w-10 h-10" />
+              <span className="text-xl font-bold">SymptoCheck</span>
             </Link>
           </div>
           <ul
